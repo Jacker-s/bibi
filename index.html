@@ -1,0 +1,1172 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bianca, quer casar comigo? 💍</title>
+  <meta name="description" content="Um pedido de casamento com design elegante e romântico." />
+
+  <style>
+    :root{
+      --bg0:#0b0a10;
+      --bg1:#120d1a;
+      --card: rgba(255,255,255,.08);
+      --card2: rgba(255,255,255,.12);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+
+      /* romântico */
+      --pink:#ff5aa5;
+      --rose:#ff3d7f;
+      --peach:#ffb3c7;
+      --lav:#b7a7ff;
+      --gold:#ffd7a1;
+
+      --shadow: 0 20px 70px rgba(0,0,0,.45);
+      --radius: 28px;
+
+      --maxw: 1120px;
+      --blur: 18px;
+      --ease: cubic-bezier(.2,.8,.2,1);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 15% 10%, rgba(255,90,165,.22), transparent 55%),
+        radial-gradient(900px 700px at 85% 20%, rgba(183,167,255,.18), transparent 50%),
+        radial-gradient(800px 650px at 50% 90%, rgba(255,215,161,.16), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1) 60%, #07060b);
+      overflow-x:hidden;
+    }
+
+    .noise{
+      position:fixed; inset:0;
+      pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+      opacity:.28;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+
+    .wrap{ max-width:var(--maxw); margin:0 auto; padding: 28px 22px 90px; }
+
+    header{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: linear-gradient(180deg, rgba(10,8,14,.78), rgba(10,8,14,.35));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding: 14px 22px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      letter-spacing:.2px;
+      font-weight:600;
+    }
+    .logo{
+      width:28px; height:28px; border-radius:10px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), rgba(255,255,255,.15) 40%, rgba(255,90,165,.35) 70%, rgba(183,167,255,.25));
+      border:1px solid rgba(255,255,255,.22);
+      box-shadow: 0 10px 35px rgba(255,90,165,.18);
+    }
+    .navlinks{
+      display:flex; gap:14px; flex-wrap:wrap;
+      color: var(--muted);
+      font-size:14px;
+    }
+    .navlinks a{
+      padding:8px 10px;
+      border-radius:999px;
+      transition: background .25s var(--ease), color .25s var(--ease);
+    }
+    .navlinks a:hover{
+      background: rgba(255,255,255,.07);
+      color: var(--text);
+    }
+    .cta-mini{ display:flex; gap:10px; align-items:center; }
+
+    .btn{
+      appearance:none; border:0; cursor:pointer;
+      padding: 11px 14px;
+      border-radius: 999px;
+      font-weight:600;
+      color: var(--text);
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.16);
+      backdrop-filter: blur(var(--blur));
+      -webkit-backdrop-filter: blur(var(--blur));
+      transition: transform .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease);
+      box-shadow: 0 18px 45px rgba(0,0,0,.25);
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.22); }
+    .btn:active{ transform: translateY(0px) scale(.99); }
+
+    .btn-primary{
+      background: linear-gradient(135deg, rgba(255,90,165,.95), rgba(183,167,255,.65));
+      border-color: rgba(255,255,255,.22);
+      box-shadow: 0 20px 70px rgba(255,90,165,.22);
+    }
+    .btn-primary:hover{ background: linear-gradient(135deg, rgba(255,61,127,.98), rgba(183,167,255,.75)); }
+
+    .hero{
+      padding: 56px 0 10px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 26px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){ .hero{ grid-template-columns: 1fr; } }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(var(--blur));
+      -webkit-backdrop-filter: blur(var(--blur));
+      overflow:hidden;
+    }
+    .hero-main{
+      padding: 34px 30px 28px;
+      position:relative;
+      min-height: 420px;
+    }
+    .glow{
+      position:absolute; inset:-40px -60px auto auto;
+      width: 420px; height:420px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,90,165,.35), transparent 60%),
+                  radial-gradient(circle at 70% 60%, rgba(183,167,255,.22), transparent 55%);
+      filter: blur(18px);
+      opacity:.9;
+      pointer-events:none;
+      transform: translate3d(0,0,0);
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .badge .dot{
+      width:8px; height:8px; border-radius:99px;
+      background: linear-gradient(135deg, var(--rose), var(--lav));
+      box-shadow: 0 0 0 4px rgba(255,90,165,.15);
+    }
+    h1{
+      margin: 18px 0 12px;
+      font-size: clamp(34px, 4vw, 56px);
+      letter-spacing: -0.02em;
+      line-height: 1.02;
+    }
+    .sub{
+      margin:0;
+      max-width: 60ch;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+    .hero-actions{
+      margin-top: 22px;
+      display:flex; gap:12px; flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .hero-side{
+      padding: 18px;
+      display:flex; flex-direction:column; gap:12px;
+      min-height: 420px;
+    }
+    .mini{
+      padding: 18px 18px 16px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .mini h3{
+      margin: 0 0 8px;
+      font-size: 14px;
+      letter-spacing:.2px;
+      color: rgba(255,255,255,.84);
+    }
+    .mini p{
+      margin:0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+      white-space: pre-line;
+    }
+    .pillrow{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top: 12px;
+    }
+    .pill{
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.78);
+    }
+
+    .section{ margin-top: 22px; padding: 22px; }
+    .section h2{
+      margin: 0 0 10px;
+      font-size: 22px;
+      letter-spacing: -.01em;
+    }
+    .section .lead{
+      margin:0 0 16px;
+      color: var(--muted);
+      line-height:1.7;
+      white-space: pre-line;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 920px){ .grid{ grid-template-columns: 1fr; } }
+
+    .tile{
+      padding: 16px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      min-height: 120px;
+      position:relative;
+      overflow:hidden;
+    }
+    .tile strong{
+      display:block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: rgba(255,255,255,.9);
+    }
+    .tile span{
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      display:block;
+      white-space: pre-line;
+    }
+    .tile:before{
+      content:"";
+      position:absolute; inset:-60px auto auto -60px;
+      width: 180px; height:180px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,90,165,.25), transparent 60%);
+      filter: blur(10px);
+      opacity:.9;
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 920px){ .gallery{ grid-template-columns: repeat(6, 1fr); } }
+    .ph{
+      grid-column: span 4;
+      height: 170px;
+      border-radius: 24px;
+      background:
+        radial-gradient(200px 120px at 25% 30%, rgba(255,90,165,.25), transparent 60%),
+        radial-gradient(220px 140px at 70% 65%, rgba(183,167,255,.18), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+      border: 1px solid rgba(255,255,255,.14);
+      overflow:hidden;
+      position:relative;
+    }
+    .ph:after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.10) 40%, transparent 70%);
+      transform: translateX(-60%);
+      animation: sheen 3.5s infinite;
+      opacity:.55;
+    }
+    @keyframes sheen{
+      0%{ transform: translateX(-70%); }
+      55%{ transform: translateX(120%); }
+      100%{ transform: translateX(120%); }
+    }
+    .ph small{
+      position:absolute; left:14px; bottom:12px;
+      color: rgba(255,255,255,.70);
+      font-size: 12px;
+      letter-spacing:.2px;
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 6px 10px;
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .ph.wide{ grid-column: span 8; }
+    .ph.tall{ height: 250px; }
+
+    .proposal{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 920px){ .proposal{ grid-template-columns: 1fr; } }
+
+    .question{ padding: 24px; }
+    .question h2{
+      margin:0 0 8px;
+      font-size: 26px;
+      letter-spacing:-.02em;
+    }
+    .question p{
+      margin:0 0 16px;
+      color: var(--muted);
+      line-height:1.7;
+      white-space: pre-line;
+    }
+    .answers{
+      display:flex; gap:12px; flex-wrap:wrap;
+      align-items:center;
+      margin-top: 10px;
+    }
+    .btn-yes{
+      padding: 12px 18px;
+      background: linear-gradient(135deg, rgba(255,61,127,.98), rgba(255,179,199,.85));
+      box-shadow: 0 22px 75px rgba(255,61,127,.25);
+    }
+    .btn-no{
+      position:relative;
+      padding: 12px 18px;
+      background: rgba(255,255,255,.10);
+    }
+
+    .panel{
+      padding: 22px;
+      display:flex; flex-direction:column; gap:10px;
+    }
+    .panel .line{
+      display:flex; justify-content:space-between; gap:12px;
+      padding: 12px 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.85);
+      font-size: 14px;
+    }
+    .panel .line span{ color: var(--muted); }
+
+    .modal{
+      position:fixed; inset:0;
+      display:none;
+      align-items:center; justify-content:center;
+      padding: 20px;
+      z-index: 50;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .modal.show{ display:flex; }
+    .modal-card{
+      width:min(740px, 100%);
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,.13), rgba(255,255,255,.08));
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow: 0 30px 120px rgba(0,0,0,.55);
+      overflow:hidden;
+    }
+    .modal-top{
+      padding: 22px 22px 10px;
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+    }
+    .modal-top h3{
+      margin:0;
+      font-size: 18px;
+      letter-spacing:-.01em;
+    }
+    .close{
+      width: 40px; height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      cursor:pointer;
+      transition: transform .25s var(--ease), background .25s var(--ease);
+    }
+    .close:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); }
+    .modal-body{
+      padding: 0 22px 22px;
+      color: var(--muted);
+      line-height: 1.75;
+      white-space: pre-line;
+    }
+    .modal-body .big{
+      margin: 8px 0 12px;
+      color: rgba(255,255,255,.92);
+      font-size: 28px;
+      letter-spacing:-.02em;
+      line-height:1.15;
+    }
+    .modal-actions{
+      margin-top: 16px;
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+
+    #confetti{
+      position:fixed; inset:0;
+      pointer-events:none;
+      z-index: 60;
+      display:none;
+    }
+
+    footer{
+      margin-top: 22px;
+      color: rgba(255,255,255,.55);
+      font-size: 13px;
+      text-align:center;
+      padding: 26px 0 0;
+    }
+
+    .reveal{
+      opacity:0;
+      transform: translateY(10px);
+      transition: opacity .9s var(--ease), transform .9s var(--ease);
+    }
+    .reveal.show{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    input, textarea{
+      width:100%;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.20);
+      color: rgba(255,255,255,.92);
+      outline:none;
+      font-size: 14px;
+      transition: border-color .25s var(--ease), background .25s var(--ease);
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(255,90,165,.45);
+      background: rgba(0,0,0,.26);
+    }
+    textarea{ resize: vertical; }
+  </style>
+</head>
+
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <canvas id="confetti"></canvas>
+
+  <header>
+    <nav class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>Para <span id="nomeDela" style="color: rgba(255,255,255,.92);">Bianca</span></div>
+      </div>
+
+      <div class="navlinks" aria-label="Navegação">
+        <a href="#historia">Nossa história</a>
+        <a href="#motivos">Por quê</a>
+        <a href="#momentos">Momentos</a>
+        <a href="#pedido">O pedido</a>
+      </div>
+
+      <div class="cta-mini">
+        <button class="btn" id="btnEditar" type="button">Personalizar</button>
+        <button class="btn btn-primary" id="btnIrPedido" type="button">Ir pro pedido</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="card hero-main reveal">
+        <div class="glow" aria-hidden="true"></div>
+
+        <div class="badge">
+          <span class="dot" aria-hidden="true"></span>
+          <span id="badgeText">12 anos, 3 filhos e uma história que sempre escolhe recomeçar</span>
+        </div>
+
+        <h1>
+          <span id="heroTitle">Bianca, eu escolho você.</span><br />
+          <span style="color: rgba(255,255,255,.86);" id="heroTitle2">Hoje, amanhã… e pra sempre.</span>
+        </h1>
+
+        <p class="sub" id="heroSub">A gente é um casal atípico.
+Às vezes briga por besteira, às vezes se entende no olhar.
+Mas uma coisa nunca mudou: quando a fase aperta, a gente não solta.
+A gente supera — juntos.</p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="btnAbrirCarta" type="button">Ler a carta</button>
+          <button class="btn" id="btnRolar" type="button">Ver por que eu te amo</button>
+        </div>
+      </div>
+
+      <aside class="card hero-side reveal">
+        <div class="mini">
+          <h3>Nossa linha do tempo</h3>
+          <p id="linhaTempo">💗 12 anos juntos
+👨‍👩‍👧‍👧‍👦 3 filhos (1 menino e 2 meninas)
+🧩 Um amor real, com imperfeições… e com escolha diária.</p>
+
+          <div class="pillrow">
+            <span class="pill" id="pillLocal">📍 Nosso lugar</span>
+            <span class="pill" id="pillMusica">🎵 Nossa música</span>
+          </div>
+        </div>
+
+        <div class="mini">
+          <h3>Contagem (só pra deixar o coração ansioso)</h3>
+          <p id="countdown" style="font-feature-settings:'tnum' 1, 'lnum' 1; font-variant-numeric: tabular-nums;">
+            Calculando…
+          </p>
+        </div>
+
+        <div class="mini" style="flex:1;">
+          <h3>Nosso resumo</h3>
+          <p id="tresPalavras">Família. Coragem. Nós.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="historia" class="card section reveal">
+      <h2>Nossa história</h2>
+      <p class="lead" id="historiaText">Bianca… a gente já passou por fases ruins.
+Já teve dias pesados, cansaço, preocupação, e aquelas briguinhas por besteira que parecem gigantes na hora.
+
+Mas sempre teve uma coisa maior que tudo isso:
+o que a gente construiu.
+
+Em 12 anos, a gente virou lar um pro outro.
+E nossos 3 filhos são a prova mais linda de que o nosso amor é real.
+Não é perfeito — é de verdade.
+E eu quero continuar escolhendo você… todos os dias.</p>
+    </section>
+
+    <section id="motivos" class="card section reveal">
+      <h2>Por que eu te amo</h2>
+      <p class="lead">Três motivos simples — do nosso jeito. (Minimalista, elegante… e com coração.)</p>
+
+      <div class="grid">
+        <div class="tile">
+          <strong>Porque você segurou minha mão quando foi difícil</strong>
+          <span id="m1">A gente já enfrentou coisas que muita gente desistiria. E você ficou.</span>
+        </div>
+        <div class="tile">
+          <strong>Porque você é a base da nossa família</strong>
+          <span id="m2">Nosso menino e nossas duas meninas têm em você um amor que organiza o mundo.</span>
+        </div>
+        <div class="tile">
+          <strong>Porque com você eu sinto “nós”</strong>
+          <span id="m3">Mesmo quando a gente briga, lá no fundo eu sei: é você, é a gente, é pra sempre.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="momentos" class="card section reveal">
+      <h2>Momentos</h2>
+      <p class="lead">Se quiser, você pode colocar fotos de vocês e das crianças aqui. Por enquanto, deixei placeholders.</p>
+
+      <div class="gallery" aria-label="Galeria de momentos">
+        <div class="ph wide tall"><small>Foto 1 (família)</small></div>
+        <div class="ph tall"><small>Foto 2</small></div>
+        <div class="ph"><small>Foto 3</small></div>
+        <div class="ph"><small>Foto 4</small></div>
+        <div class="ph wide"><small>Foto 5 (12 anos)</small></div>
+      </div>
+
+      <p class="lead" style="margin-top:14px;">
+        Dica rápida pro GitHub Pages: se você colocar imagens na pasta <b>images/</b>, eu consigo adaptar pra aparecerem aqui.
+      </p>
+    </section>
+
+    <section id="pedido" class="card section reveal">
+      <div class="proposal">
+        <div class="question">
+          <h2 id="perguntaTitle">Bianca… quer casar comigo?</h2>
+          <p id="perguntaSub">Eu não prometo uma vida sem briguinhas por besteira.
+Prometo maturidade pra pedir desculpa, humildade pra aprender,
+e amor pra continuar escolhendo você.
+
+Prometo ser seu parceiro de verdade:
+no bom, no cansado, no difícil, no divertido…
+e na nossa família linda.</p>
+
+          <div class="answers">
+            <button class="btn btn-primary btn-yes" id="btnSim" type="button">SIM 💍</button>
+            <button class="btn btn-no" id="btnNao" type="button">NÃO 🙈</button>
+            <button class="btn" id="btnCompartilhar" type="button">Compartilhar</button>
+          </div>
+
+          <p id="msgPequena" style="margin-top:14px; color: rgba(255,255,255,.65); font-size: 13px;">
+            (Atenção: o botão “NÃO” é tímido e pode tentar fugir.)
+          </p>
+        </div>
+
+        <div class="panel">
+          <div class="line"><div>Nome dela</div><span id="panelNome">Bianca</span></div>
+          <div class="line"><div>Meu nome</div><span id="panelSeuNome">Jackson</span></div>
+          <div class="line"><div>Local</div><span id="panelLocal">Nosso lugar</span></div>
+          <div class="line"><div>Mensagem curta</div><span id="panelMsg">12 anos… e eu quero o “pra sempre”.</span></div>
+          <div class="line"><div>Status</div><span id="panelStatus">Aguardando o “sim” 😳</span></div>
+          <button class="btn" id="btnAbrirConfig" type="button" style="margin-top:6px;">Editar detalhes</button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Feito com carinho • <span id="ano"></span>
+    </footer>
+  </main>
+
+  <!-- Modal Carta -->
+  <div class="modal" id="modalCarta" role="dialog" aria-modal="true" aria-labelledby="tituloCarta">
+    <div class="modal-card">
+      <div class="modal-top">
+        <h3 id="tituloCarta">Uma carta pra você</h3>
+        <button class="close" id="btnFecharCarta" aria-label="Fechar">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="big" id="cartaBig">Bianca, você é a minha melhor escolha.</div>
+        <div id="cartaTexto">Eu amo a nossa vida real.
+
+A gente é atípico, às vezes briga por besteira… mas também ri, se abraça e se entende.
+A gente já passou por fase ruim e não desistiu.
+A gente construiu uma família linda.
+
+Eu não quero um amor perfeito.
+Eu quero o nosso: de verdade, com parceria, respeito e recomeço.
+
+Se for com você… eu topo tudo.
+Quer casar comigo?</div>
+        <div class="modal-actions">
+          <button class="btn btn-primary" id="btnIrSim" type="button">Eu tô pronta pro “SIM”</button>
+          <button class="btn" id="btnCopiarCarta" type="button">Copiar texto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Personalizar -->
+  <div class="modal" id="modalConfig" role="dialog" aria-modal="true" aria-labelledby="tituloConfig">
+    <div class="modal-card">
+      <div class="modal-top">
+        <h3 id="tituloConfig">Personalizar</h3>
+        <button class="close" id="btnFecharConfig" aria-label="Fechar">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <p style="margin:0 0 12px; color: rgba(255,255,255,.70);">
+          Edite abaixo e o site muda na hora. (Você pode salvar e publicar no GitHub Pages.)
+        </p>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <label style="display:flex; flex-direction:column; gap:6px;">
+            <span style="color: rgba(255,255,255,.78); font-size: 13px;">Nome dela</span>
+            <input id="inpNomeDela" placeholder="Ex: Bianca" />
+          </label>
+          <label style="display:flex; flex-direction:column; gap:6px;">
+            <span style="color: rgba(255,255,255,.78); font-size: 13px;">Seu nome</span>
+            <input id="inpSeuNome" placeholder="Ex: (seu nome)" />
+          </label>
+
+          <label style="display:flex; flex-direction:column; gap:6px;">
+            <span style="color: rgba(255,255,255,.78); font-size: 13px;">Local</span>
+            <input id="inpLocal" placeholder="Ex: onde vou pedir" />
+          </label>
+
+          <label style="display:flex; flex-direction:column; gap:6px;">
+            <span style="color: rgba(255,255,255,.78); font-size: 13px;">Nossa música</span>
+            <input id="inpMusica" placeholder="Ex: Cantor — Música" />
+          </label>
+
+          <label style="display:flex; flex-direction:column; gap:6px; grid-column: 1 / -1;">
+            <span style="color: rgba(255,255,255,.78); font-size: 13px;">Mensagem curta (painel)</span>
+            <input id="inpMsgCurta" placeholder="Ex: 12 anos… e eu quero o “pra sempre”." />
+          </label>
+
+          <label style="display:flex; flex-direction:column; gap:6px; grid-column: 1 / -1;">
+            <span style="color: rgba(255,255,255,.78); font-size: 13px;">Texto da história</span>
+            <textarea id="inpHistoria" rows="4"></textarea>
+          </label>
+
+          <label style="display:flex; flex-direction:column; gap:6px; grid-column: 1 / -1;">
+            <span style="color: rgba(255,255,255,.78); font-size: 13px;">Texto da carta</span>
+            <textarea id="inpCarta" rows="7"></textarea>
+          </label>
+
+          <label style="display:flex; flex-direction:column; gap:6px;">
+            <span style="color: rgba(255,255,255,.78); font-size: 13px;">Data do pedido</span>
+            <input id="inpData" type="date" />
+          </label>
+
+          <label style="display:flex; flex-direction:column; gap:6px;">
+            <span style="color: rgba(255,255,255,.78); font-size: 13px;">Hora (opcional)</span>
+            <input id="inpHora" type="time" />
+          </label>
+        </div>
+
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn btn-primary" id="btnSalvar" type="button">Salvar no navegador</button>
+          <button class="btn" id="btnReset" type="button">Resetar</button>
+        </div>
+
+        <p style="margin:14px 0 0; color: rgba(255,255,255,.55); font-size: 12px; line-height:1.6;">
+          * “Salvar no navegador” guarda as infos só neste dispositivo (localStorage).
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      "use strict";
+      const $ = (sel, root=document) => root.querySelector(sel);
+      const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+      const defaults = {
+        nomeDela: "Bianca",
+        seuNome: "Seu amor",
+        local: "Nosso lugar",
+        musica: "Nossa música",
+        msgCurta: "12 anos… e eu quero o “pra sempre”.",
+        badge: "12 anos, 3 filhos e uma história que sempre escolhe recomeçar",
+        historia:
+`Bianca… a gente já passou por fases ruins.
+Já teve dias pesados, cansaço, preocupação, e aquelas briguinhas por besteira que parecem gigantes na hora.
+
+Mas sempre teve uma coisa maior que tudo isso:
+o que a gente construiu.
+
+Em 12 anos, a gente virou lar um pro outro.
+E nossos 3 filhos são a prova mais linda de que o nosso amor é real.
+Não é perfeito — é de verdade.
+E eu quero continuar escolhendo você… todos os dias.`,
+        carta:
+`Eu amo a nossa vida real.
+
+A gente é atípico, às vezes briga por besteira… mas também ri, se abraça e se entende.
+A gente já passou por fase ruim e não desistiu.
+A gente construiu uma família linda.
+
+Eu não quero um amor perfeito.
+Eu quero o nosso: de verdade, com parceria, respeito e recomeço.
+
+Se for com você… eu topo tudo.
+Quer casar comigo?`,
+        dataISO: "",
+        hora: ""
+      };
+
+      const storageKey = "pedidoCasamentoConfig:v2";
+
+      function safeParse(json){ try{ return JSON.parse(json); }catch{ return null; } }
+      function load(){
+        const raw = localStorage.getItem(storageKey);
+        const cfg = raw ? safeParse(raw) : null;
+        return Object.assign({}, defaults, cfg || {});
+      }
+      function save(cfg){ localStorage.setItem(storageKey, JSON.stringify(cfg)); }
+      function reset(){ localStorage.removeItem(storageKey); }
+
+      let state = load();
+
+      const el = {
+        nomeDela: $("#nomeDela"),
+        badgeText: $("#badgeText"),
+        heroTitle: $("#heroTitle"),
+        heroTitle2: $("#heroTitle2"),
+        heroSub: $("#heroSub"),
+        pillLocal: $("#pillLocal"),
+        pillMusica: $("#pillMusica"),
+        historiaText: $("#historiaText"),
+
+        panelNome: $("#panelNome"),
+        panelSeuNome: $("#panelSeuNome"),
+        panelLocal: $("#panelLocal"),
+        panelMsg: $("#panelMsg"),
+        panelStatus: $("#panelStatus"),
+
+        modalCarta: $("#modalCarta"),
+        modalConfig: $("#modalConfig"),
+        cartaBig: $("#cartaBig"),
+        cartaTexto: $("#cartaTexto"),
+
+        countdown: $("#countdown"),
+
+        btnEditar: $("#btnEditar"),
+        btnAbrirConfig: $("#btnAbrirConfig"),
+        btnFecharConfig: $("#btnFecharConfig"),
+        btnSalvar: $("#btnSalvar"),
+        btnReset: $("#btnReset"),
+
+        btnAbrirCarta: $("#btnAbrirCarta"),
+        btnFecharCarta: $("#btnFecharCarta"),
+        btnCopiarCarta: $("#btnCopiarCarta"),
+        btnIrSim: $("#btnIrSim"),
+
+        btnRolar: $("#btnRolar"),
+        btnIrPedido: $("#btnIrPedido"),
+        btnSim: $("#btnSim"),
+        btnNao: $("#btnNao"),
+        btnCompartilhar: $("#btnCompartilhar"),
+
+        ano: $("#ano"),
+        inpNomeDela: $("#inpNomeDela"),
+        inpSeuNome: $("#inpSeuNome"),
+        inpLocal: $("#inpLocal"),
+        inpMusica: $("#inpMusica"),
+        inpMsgCurta: $("#inpMsgCurta"),
+        inpHistoria: $("#inpHistoria"),
+        inpCarta: $("#inpCarta"),
+        inpData: $("#inpData"),
+        inpHora: $("#inpHora"),
+
+        confetti: $("#confetti")
+      };
+
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting) e.target.classList.add("show");
+        });
+      }, { threshold: 0.12 });
+      $$(".reveal").forEach(n=>io.observe(n));
+
+      function formatDateBR(isoDate){
+        if(!isoDate) return null;
+        const [y,m,d] = isoDate.split("-").map(Number);
+        if(!y || !m || !d) return null;
+        const dt = new Date(y, m-1, d);
+        return new Intl.DateTimeFormat("pt-BR", { day:"2-digit", month:"long", year:"numeric" }).format(dt);
+      }
+
+      function getTargetDate(cfg){
+        let iso = cfg.dataISO;
+        if(!iso){
+          const now = new Date();
+          const y = now.getFullYear();
+          const m = String(now.getMonth()+1).padStart(2,"0");
+          const d = String(now.getDate()).padStart(2,"0");
+          iso = `${y}-${m}-${d}`;
+        }
+        const t = (cfg.hora && cfg.hora.includes(":")) ? cfg.hora : "20:00";
+        const [hh, mm] = t.split(":").map(Number);
+        const [Y, M, D] = iso.split("-").map(Number);
+        return new Date(Y, M-1, D, hh || 0, mm || 0, 0, 0);
+      }
+
+      function updateCountdown(){
+        const target = getTargetDate(state);
+        const now = new Date();
+        const diff = target.getTime() - now.getTime();
+
+        if(diff <= 0){
+          el.countdown.textContent = "É hoje. Respira… 💗";
+          return;
+        }
+
+        const totalSeconds = Math.floor(diff / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const mins = Math.floor((totalSeconds % 3600) / 60);
+        const secs = totalSeconds % 60;
+
+        const parts = [];
+        if(days) parts.push(`${days}d`);
+        parts.push(`${String(hours).padStart(2,"0")}h`);
+        parts.push(`${String(mins).padStart(2,"0")}m`);
+        parts.push(`${String(secs).padStart(2,"0")}s`);
+
+        el.countdown.textContent = parts.join(" ");
+      }
+
+      function apply(){
+        el.nomeDela.textContent = state.nomeDela || defaults.nomeDela;
+        el.badgeText.textContent = state.badge || defaults.badge;
+
+        el.heroTitle.textContent = `${state.nomeDela || defaults.nomeDela}, eu escolho você.`;
+
+        el.panelNome.textContent = state.nomeDela || defaults.nomeDela;
+        el.panelSeuNome.textContent = state.seuNome || defaults.seuNome;
+        el.panelLocal.textContent = state.local || defaults.local;
+        el.panelMsg.textContent = state.msgCurta || defaults.msgCurta;
+
+        el.pillLocal.textContent = `📍 ${state.local || defaults.local}`;
+        el.pillMusica.textContent = `🎵 ${state.musica || defaults.musica}`;
+
+        el.historiaText.textContent = state.historia || defaults.historia;
+        el.cartaTexto.textContent = state.carta || defaults.carta;
+        el.cartaBig.textContent = `${state.nomeDela || defaults.nomeDela}, você é a minha melhor escolha.`;
+
+        el.ano.textContent = String(new Date().getFullYear());
+        updateCountdown();
+      }
+
+      function openModal(modal){
+        modal.classList.add("show");
+        const esc = (e)=>{
+          if(e.key === "Escape"){
+            closeModal(modal);
+            document.removeEventListener("keydown", esc);
+          }
+        };
+        document.addEventListener("keydown", esc);
+      }
+      function closeModal(modal){ modal.classList.remove("show"); }
+
+      function fillInputs(){
+        el.inpNomeDela.value = state.nomeDela;
+        el.inpSeuNome.value = state.seuNome;
+        el.inpLocal.value = state.local;
+        el.inpMusica.value = state.musica;
+        el.inpMsgCurta.value = state.msgCurta;
+        el.inpHistoria.value = state.historia;
+        el.inpCarta.value = state.carta;
+        el.inpData.value = state.dataISO || "";
+        el.inpHora.value = state.hora || "";
+      }
+
+      function readInputs(){
+        const cfg = Object.assign({}, state);
+        cfg.nomeDela = el.inpNomeDela.value.trim() || defaults.nomeDela;
+        cfg.seuNome = el.inpSeuNome.value.trim() || defaults.seuNome;
+        cfg.local = el.inpLocal.value.trim() || defaults.local;
+        cfg.musica = el.inpMusica.value.trim() || defaults.musica;
+        cfg.msgCurta = el.inpMsgCurta.value.trim() || defaults.msgCurta;
+        cfg.historia = el.inpHistoria.value.trim() || defaults.historia;
+        cfg.carta = el.inpCarta.value.trim() || defaults.carta;
+        cfg.dataISO = el.inpData.value || "";
+        cfg.hora = el.inpHora.value || "";
+        cfg.badge = defaults.badge;
+        return cfg;
+      }
+
+      // Botão NÃO foge
+      let noMoves = 0;
+      function dodgeNo(){
+        const btn = el.btnNao;
+        const rect = btn.getBoundingClientRect();
+        const maxX = Math.min(window.innerWidth - rect.width - 16, window.innerWidth - rect.width);
+        const maxY = Math.min(window.innerHeight - rect.height - 16, window.innerHeight - rect.height);
+
+        const x = Math.max(12, Math.floor(Math.random() * maxX));
+        const y = Math.max(12, Math.floor(Math.random() * maxY));
+
+        btn.style.position = "fixed";
+        btn.style.left = x + "px";
+        btn.style.top = y + "px";
+        btn.style.zIndex = 40;
+
+        noMoves++;
+        if(noMoves === 3){
+          $("#msgPequena").textContent = "(Ele não quer te contrariar… 😅)";
+        }
+        if(noMoves >= 6){
+          $("#msgPequena").textContent = "(Ok, o “NÃO” entrou em férias. Vai de SIM 💗)";
+          btn.disabled = true;
+          btn.style.opacity = ".6";
+          btn.style.cursor = "not-allowed";
+        }
+      }
+
+      // Confetti
+      function startConfetti(durationMs=4200){
+        const canvas = el.confetti;
+        const ctx = canvas.getContext("2d");
+        if(!ctx) return;
+
+        const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+        function resize(){
+          canvas.width = Math.floor(window.innerWidth * dpr);
+          canvas.height = Math.floor(window.innerHeight * dpr);
+          canvas.style.width = window.innerWidth + "px";
+          canvas.style.height = window.innerHeight + "px";
+          ctx.setTransform(dpr,0,0,dpr,0,0);
+        }
+        resize();
+        canvas.style.display = "block";
+
+        const colors = ["#ff5aa5","#ff3d7f","#ffb3c7","#b7a7ff","#ffd7a1","#ffffff"];
+        const pieces = Array.from({length: 170}).map(()=>({
+          x: Math.random() * window.innerWidth,
+          y: -20 - Math.random()*window.innerHeight*0.3,
+          r: 3 + Math.random()*4,
+          vx: -2 + Math.random()*4,
+          vy: 2 + Math.random()*4,
+          rot: Math.random()*Math.PI,
+          vr: -0.15 + Math.random()*0.3,
+          col: colors[Math.floor(Math.random()*colors.length)],
+          shape: Math.random() < .5 ? "rect" : "circle"
+        }));
+
+        const start = performance.now();
+        function frame(t){
+          const elapsed = t - start;
+          ctx.clearRect(0,0,window.innerWidth, window.innerHeight);
+
+          pieces.forEach(p=>{
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += 0.03;
+            p.rot += p.vr;
+
+            if(p.x < -40) p.x = window.innerWidth + 40;
+            if(p.x > window.innerWidth + 40) p.x = -40;
+
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rot);
+            ctx.globalAlpha = 0.95;
+            ctx.fillStyle = p.col;
+
+            if(p.shape === "rect"){
+              ctx.fillRect(-p.r, -p.r/2, p.r*2, p.r);
+            }else{
+              ctx.beginPath();
+              ctx.arc(0,0,p.r,0,Math.PI*2);
+              ctx.fill();
+            }
+            ctx.restore();
+          });
+
+          if(elapsed < durationMs){
+            requestAnimationFrame(frame);
+          }else{
+            canvas.style.display = "none";
+          }
+        }
+
+        window.addEventListener("resize", resize, { once:true });
+        requestAnimationFrame(frame);
+      }
+
+      function onYes(){
+        el.panelStatus.textContent = "ELA DISSE SIM!!! 💍💗";
+        startConfetti();
+
+        // Reseta botão NÃO
+        el.btnNao.style.position = "";
+        el.btnNao.style.left = "";
+        el.btnNao.style.top = "";
+        el.btnNao.style.zIndex = "";
+        el.btnNao.disabled = false;
+        el.btnNao.style.opacity = "";
+        el.btnNao.style.cursor = "";
+        noMoves = 0;
+
+        el.cartaBig.textContent = "Sim! 💗";
+        el.cartaTexto.textContent =
+`Bianca, eu te amo.
+
+Obrigado por escolher a gente.
+Obrigado pela nossa história e pela nossa família.
+Eu prometo continuar te escolhendo — sempre.
+
+Assinado: ${state.seuNome || defaults.seuNome}.`;
+
+        openModal(el.modalCarta);
+      }
+
+      async function share(){
+        const title = "Bianca, quer casar comigo?";
+        const text = `Um pedido pra ${state.nomeDela || defaults.nomeDela} — ${state.msgCurta || defaults.msgCurta}`;
+        const url = location.href;
+
+        try{
+          if(navigator.share){
+            await navigator.share({ title, text, url });
+          }else{
+            await navigator.clipboard.writeText(`${title}\n${text}\n${url}`);
+            alert("Link copiado! ✨");
+          }
+        }catch{
+          try{
+            await navigator.clipboard.writeText(url);
+            alert("Link copiado! ✨");
+          }catch{}
+        }
+      }
+
+      function scrollToId(id){
+        const node = $(id);
+        if(!node) return;
+        node.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      el.btnAbrirCarta.addEventListener("click", ()=> openModal(el.modalCarta));
+      el.btnFecharCarta.addEventListener("click", ()=> closeModal(el.modalCarta));
+      el.modalCarta.addEventListener("click", (e)=>{ if(e.target === el.modalCarta) closeModal(el.modalCarta); });
+
+      el.btnEditar.addEventListener("click", ()=>{ fillInputs(); openModal(el.modalConfig); });
+      el.btnAbrirConfig.addEventListener("click", ()=>{ fillInputs(); openModal(el.modalConfig); });
+      el.btnFecharConfig.addEventListener("click", ()=> closeModal(el.modalConfig));
+      el.modalConfig.addEventListener("click", (e)=>{ if(e.target === el.modalConfig) closeModal(el.modalConfig); });
+
+      el.btnSalvar.addEventListener("click", ()=>{
+        state = readInputs();
+        save(state);
+        apply();
+        closeModal(el.modalConfig);
+      });
+
+      el.btnReset.addEventListener("click", ()=>{
+        reset();
+        state = load();
+        fillInputs();
+        apply();
+      });
+
+      el.btnCopiarCarta.addEventListener("click", async ()=>{
+        const text = (state.carta || defaults.carta);
+        try{
+          await navigator.clipboard.writeText(text);
+          alert("Carta copiada 💗");
+        }catch{
+          alert("Não consegui copiar automaticamente. Selecione e copie manualmente 🙈");
+        }
+      });
+
+      el.btnIrSim.addEventListener("click", ()=>{
+        closeModal(el.modalCarta);
+        scrollToId("#pedido");
+      });
+
+      el.btnRolar.addEventListener("click", ()=> scrollToId("#motivos"));
+      el.btnIrPedido.addEventListener("click", ()=> scrollToId("#pedido"));
+
+      el.btnNao.addEventListener("mouseenter", dodgeNo);
+      el.btnNao.addEventListener("click", dodgeNo);
+
+      el.btnSim.addEventListener("click", onYes);
+      el.btnCompartilhar.addEventListener("click", share);
+
+      // preencher inputs e aplicar
+      apply();
+      fillInputs();
+      setInterval(updateCountdown, 1000);
+    })();
+  </script>
+</body>
+</html>
