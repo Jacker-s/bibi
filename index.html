@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Bianca, quer casar comigo? 💍</title>
   <meta name="description" content="Um pedido de casamento elegante e romântico." />
 
@@ -20,9 +20,14 @@
       --gold:#ffd7a1;
 
       --shadow: 0 20px 70px rgba(0,0,0,.45);
-      --radius: 28px;
-      --maxw: 1120px;
       --blur: 18px;
+
+      /* Responsividade fluida */
+      --maxw: 1120px;
+      --pad: clamp(14px, 3.5vw, 22px);
+      --radius: clamp(18px, 2.2vw, 28px);
+      --gap: clamp(10px, 2.2vw, 18px);
+
       --ease: cubic-bezier(.2,.8,.2,1);
     }
 
@@ -38,6 +43,8 @@
         radial-gradient(800px 650px at 50% 90%, rgba(255,215,161,.16), transparent 55%),
         linear-gradient(180deg, var(--bg0), var(--bg1) 60%, #07060b);
       overflow-x:hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
     .noise{
@@ -49,41 +56,43 @@
     }
 
     a{ color:inherit; text-decoration:none; }
-    .wrap{ max-width:var(--maxw); margin:0 auto; padding: 18px 18px 90px; }
+    .wrap{ max-width:var(--maxw); margin:0 auto; padding: var(--pad) var(--pad) calc(var(--pad) * 3.3); }
 
+    /* Header */
     header{
       position:sticky; top:0; z-index:20;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       background: linear-gradient(180deg, rgba(10,8,14,.78), rgba(10,8,14,.35));
       border-bottom: 1px solid rgba(255,255,255,.08);
+      padding-top: env(safe-area-inset-top);
     }
     .nav{
       max-width:var(--maxw);
       margin:0 auto;
-      padding: 12px 18px;
+      padding: 12px var(--pad);
       display:flex; align-items:center; justify-content:space-between;
       gap:12px;
     }
     .brand{
       display:flex; align-items:center; gap:10px;
-      letter-spacing:.2px;
       font-weight:600;
-      min-width: 160px;
+      min-width: 150px;
     }
     .logo{
       width:28px; height:28px; border-radius:10px;
       background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), rgba(255,255,255,.15) 40%, rgba(255,90,165,.35) 70%, rgba(183,167,255,.25));
       border:1px solid rgba(255,255,255,.22);
       box-shadow: 0 10px 35px rgba(255,90,165,.18);
-      flex: 0 0 auto;
+      flex:0 0 auto;
     }
 
     .navlinks{
       display:flex; gap:10px; flex-wrap:wrap;
       color: var(--muted);
-      font-size:14px;
+      font-size: 14px;
       align-items:center;
+      justify-content:center;
     }
     .navlinks a{
       padding:8px 10px;
@@ -97,11 +106,14 @@
 
     .cta-mini{ display:flex; gap:10px; align-items:center; }
 
+    /* Botões (tap-friendly) */
     .btn{
       appearance:none; border:0; cursor:pointer;
-      padding: 11px 14px;
+      padding: 12px 14px;
+      min-height: 44px; /* acessível no toque */
       border-radius: 999px;
-      font-weight:600;
+      font-weight:700;
+      letter-spacing:.15px;
       color: var(--text);
       background: rgba(255,255,255,.10);
       border: 1px solid rgba(255,255,255,.16);
@@ -110,6 +122,9 @@
       transition: transform .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease);
       box-shadow: 0 18px 45px rgba(0,0,0,.25);
       touch-action: manipulation;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      white-space: nowrap;
     }
     .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.22); }
     .btn:active{ transform: translateY(0px) scale(.99); }
@@ -121,18 +136,18 @@
     }
     .btn-primary:hover{ background: linear-gradient(135deg, rgba(255,61,127,.98), rgba(183,167,255,.75)); }
 
-    /* MENU MOBILE */
+    /* Menu mobile */
     .burger{ display:none; }
-    @media (max-width: 780px){
-      .wrap{ padding: 14px 14px 80px; }
-      .nav{ padding: 12px 14px; }
+    @media (max-width: 840px){
       .navlinks{ display:none; }
       .burger{ display:inline-flex; }
-      .cta-mini .btn{ padding: 11px 13px; }
+      .cta-mini{ gap:8px; }
+      #btnEditar{ display:none; } /* deixa mais clean no celular */
     }
+
     .mobile-drawer{
       display:none;
-      padding: 0 14px 14px;
+      padding: 0 var(--pad) calc(var(--pad) * .9);
       max-width: var(--maxw);
       margin: 0 auto;
     }
@@ -143,26 +158,18 @@
       border-radius: 18px;
       background: rgba(255,255,255,.06);
       border: 1px solid rgba(255,255,255,.12);
-      color: var(--muted);
     }
     .mobile-drawer .links a{
-      padding: 10px 12px;
+      padding: 12px 12px;
       border-radius: 14px;
       background: rgba(0,0,0,.18);
       border: 1px solid rgba(255,255,255,.10);
       color: rgba(255,255,255,.86);
+      min-height: 44px;
+      display:flex; align-items:center;
     }
 
-    /* HERO */
-    .hero{
-      padding: 24px 0 10px;
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 16px;
-      align-items:stretch;
-    }
-    @media (max-width: 920px){ .hero{ grid-template-columns: 1fr; } }
-
+    /* Cards */
     .card{
       background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
       border: 1px solid rgba(255,255,255,.14);
@@ -172,10 +179,23 @@
       -webkit-backdrop-filter: blur(var(--blur));
       overflow:hidden;
     }
+
+    /* HERO (mobile-first) */
+    .hero{
+      padding: calc(var(--pad) * 1.0) 0 0;
+      display:grid;
+      grid-template-columns: 1fr; /* mobile */
+      gap: var(--gap);
+      align-items:stretch;
+    }
+    @media (min-width: 980px){
+      .hero{ grid-template-columns: 1.15fr .85fr; }
+    }
+
     .hero-main{
-      padding: 28px 22px 22px;
+      padding: clamp(18px, 3vw, 32px);
       position:relative;
-      min-height: 360px;
+      min-height: min(420px, 70vh);
     }
     .glow{
       position:absolute; inset:-40px -60px auto auto;
@@ -195,16 +215,22 @@
       border: 1px solid rgba(255,255,255,.14);
       color: var(--muted);
       font-size: 13px;
+      max-width: 100%;
+    }
+    .badge span:last-child{
+      overflow:hidden; text-overflow: ellipsis; white-space: nowrap;
+      max-width: 72vw;
     }
     .badge .dot{
       width:8px; height:8px; border-radius:99px;
       background: linear-gradient(135deg, var(--rose), var(--lav));
       box-shadow: 0 0 0 4px rgba(255,90,165,.15);
+      flex:0 0 auto;
     }
 
     h1{
-      margin: 16px 0 10px;
-      font-size: clamp(30px, 4.4vw, 56px);
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 5vw, 56px);
       letter-spacing: -0.02em;
       line-height: 1.06;
     }
@@ -212,24 +238,27 @@
       margin:0;
       max-width: 62ch;
       color: var(--muted);
-      font-size: 16px;
+      font-size: clamp(14px, 1.9vw, 16px);
       line-height: 1.6;
       white-space: pre-line;
     }
     .hero-actions{
-      margin-top: 18px;
+      margin-top: 16px;
       display:flex; gap:10px; flex-wrap:wrap;
       align-items:center;
     }
+    .hero-actions .btn{ flex: 1 1 auto; }
+    @media (min-width: 520px){
+      .hero-actions .btn{ flex: 0 0 auto; }
+    }
 
     .hero-side{
-      padding: 16px;
+      padding: clamp(14px, 2.4vw, 18px);
       display:flex; flex-direction:column; gap:12px;
-      min-height: 360px;
     }
     .mini{
-      padding: 16px;
-      border-radius: 22px;
+      padding: clamp(14px, 2.4vw, 16px);
+      border-radius: clamp(16px, 2vw, 22px);
       background: rgba(255,255,255,.07);
       border: 1px solid rgba(255,255,255,.12);
     }
@@ -257,12 +286,14 @@
       background: rgba(255,255,255,.07);
       border: 1px solid rgba(255,255,255,.12);
       color: rgba(255,255,255,.78);
+      max-width: 100%;
     }
 
-    .section{ margin-top: 16px; padding: 20px; }
+    /* Sections */
+    .section{ margin-top: var(--gap); padding: clamp(16px, 2.8vw, 22px); }
     .section h2{
       margin: 0 0 10px;
-      font-size: 22px;
+      font-size: clamp(18px, 2.8vw, 22px);
       letter-spacing: -.01em;
     }
     .section .lead{
@@ -270,18 +301,21 @@
       color: var(--muted);
       line-height:1.7;
       white-space: pre-line;
+      font-size: clamp(14px, 2vw, 16px);
     }
 
+    /* grid motivos */
     .grid{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr;
       gap: 12px;
     }
-    @media (max-width: 920px){ .grid{ grid-template-columns: 1fr; } }
+    @media (min-width: 680px){ .grid{ grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 980px){ .grid{ grid-template-columns: repeat(3, 1fr); } }
 
     .tile{
       padding: 16px;
-      border-radius: 22px;
+      border-radius: clamp(16px, 2vw, 22px);
       background: rgba(255,255,255,.06);
       border: 1px solid rgba(255,255,255,.12);
       min-height: 120px;
@@ -311,26 +345,25 @@
       opacity:.9;
     }
 
-    /* GALERIA REAL (dinâmica) */
+    /* GALERIA auto-fit (adaptável a qualquer tela) */
     .gallery{
       display:grid;
-      grid-template-columns: repeat(12, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
       gap: 12px;
     }
-    @media (max-width: 920px){ .gallery{ grid-template-columns: repeat(6, 1fr); } }
+    @media (min-width: 520px){ .gallery{ grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); } }
+    @media (min-width: 980px){ .gallery{ grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); } }
+
     .gitem{
-      grid-column: span 4;
       border-radius: 24px;
       border: 1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
       overflow:hidden;
       position:relative;
-      height: 180px;
+      height: clamp(170px, 26vw, 260px);
       box-shadow: 0 18px 55px rgba(0,0,0,.22);
+      isolation:isolate;
     }
-    .gitem.wide{ grid-column: span 8; }
-    .gitem.tall{ height: 260px; }
-
     .gitem img{
       width:100%;
       height:100%;
@@ -354,6 +387,7 @@
       white-space: nowrap;
       overflow:hidden;
       text-overflow: ellipsis;
+      z-index: 2;
     }
 
     .gallery-loading{
@@ -366,18 +400,18 @@
       line-height: 1.6;
     }
 
-    /* PEDIDO */
+    /* Pedido */
     .proposal{
       display:grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 12px;
     }
-    @media (max-width: 920px){ .proposal{ grid-template-columns: 1fr; } }
+    @media (min-width: 980px){ .proposal{ grid-template-columns: 1fr 1fr; } }
 
-    .question{ padding: 22px; }
+    .question{ padding: clamp(16px, 2.6vw, 22px); }
     .question h2{
       margin:0 0 8px;
-      font-size: 26px;
+      font-size: clamp(20px, 3.2vw, 26px);
       letter-spacing:-.02em;
     }
     .question p{
@@ -385,21 +419,25 @@
       color: var(--muted);
       line-height:1.7;
       white-space: pre-line;
+      font-size: clamp(14px, 2vw, 16px);
     }
     .answers{
       display:flex; gap:12px; flex-wrap:wrap;
       align-items:center;
-      margin-top: 10px;
     }
+    .answers .btn{
+      flex: 1 1 160px;
+      justify-content:center;
+    }
+
     .btn-yes{
-      padding: 12px 18px;
       background: linear-gradient(135deg, rgba(255,61,127,.98), rgba(255,179,199,.85));
       box-shadow: 0 22px 75px rgba(255,61,127,.25);
     }
-    .btn-no{ position:relative; padding: 12px 18px; background: rgba(255,255,255,.10); }
+    .btn-no{ background: rgba(255,255,255,.10); }
 
     .panel{
-      padding: 20px;
+      padding: clamp(16px, 2.6vw, 20px);
       display:flex; flex-direction:column; gap:10px;
     }
     .panel .line{
@@ -411,14 +449,14 @@
       color: rgba(255,255,255,.85);
       font-size: 14px;
     }
-    .panel .line span{ color: var(--muted); }
+    .panel .line span{ color: var(--muted); max-width: 58%; text-align:right; overflow:hidden; text-overflow: ellipsis; }
 
-    /* MODAIS */
+    /* Modais */
     .modal{
       position:fixed; inset:0;
       display:none;
       align-items:center; justify-content:center;
-      padding: 16px;
+      padding: var(--pad);
       z-index: 50;
       background: rgba(0,0,0,.55);
       backdrop-filter: blur(10px);
@@ -426,20 +464,20 @@
     }
     .modal.show{ display:flex; }
     .modal-card{
-      width:min(760px, 100%);
-      border-radius: 28px;
+      width:min(780px, 100%);
+      border-radius: var(--radius);
       background: linear-gradient(180deg, rgba(255,255,255,.13), rgba(255,255,255,.08));
       border: 1px solid rgba(255,255,255,.16);
       box-shadow: 0 30px 120px rgba(0,0,0,.55);
       overflow:hidden;
     }
     .modal-top{
-      padding: 18px 18px 10px;
+      padding: 16px 16px 10px;
       display:flex; justify-content:space-between; align-items:center; gap:12px;
     }
     .modal-top h3{ margin:0; font-size: 18px; letter-spacing:-.01em; }
     .close{
-      width: 40px; height: 40px;
+      width: 44px; height: 44px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,.16);
       background: rgba(255,255,255,.08);
@@ -448,24 +486,25 @@
       transition: transform .25s var(--ease), background .25s var(--ease);
       touch-action: manipulation;
     }
-    .close:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); }
     .modal-body{
-      padding: 0 18px 18px;
+      padding: 0 16px 16px;
       color: var(--muted);
       line-height: 1.75;
       white-space: pre-line;
+      font-size: clamp(14px, 2vw, 16px);
     }
     .modal-body .big{
       margin: 8px 0 12px;
       color: rgba(255,255,255,.92);
-      font-size: 26px;
+      font-size: clamp(20px, 3.2vw, 26px);
       letter-spacing:-.02em;
       line-height:1.15;
     }
     .modal-actions{
-      margin-top: 16px;
+      margin-top: 14px;
       display:flex; gap:10px; flex-wrap:wrap;
     }
+    .modal-actions .btn{ flex:1 1 170px; }
 
     #confetti{
       position:fixed; inset:0;
@@ -475,11 +514,11 @@
     }
 
     footer{
-      margin-top: 18px;
+      margin-top: var(--gap);
       color: rgba(255,255,255,.55);
       font-size: 13px;
       text-align:center;
-      padding: 22px 0 0;
+      padding: 18px 0 0;
     }
 
     .reveal{
@@ -492,9 +531,9 @@
     @media (prefers-reduced-motion: reduce){
       .reveal{ opacity:1; transform:none; transition:none; }
       .gitem img{ transform:none; }
+      .btn{ transition:none; }
     }
 
-    /* inputs */
     input, textarea{
       width:100%;
       padding: 11px 12px;
@@ -533,7 +572,7 @@
       </div>
 
       <div class="cta-mini">
-        <button class="btn burger" id="btnMenu" type="button" aria-label="Abrir menu">☰</button>
+        <button class="btn burger" id="btnMenu" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button>
         <button class="btn" id="btnEditar" type="button">Personalizar</button>
         <button class="btn btn-primary" id="btnIrPedido" type="button">Ir pro pedido</button>
       </div>
@@ -545,6 +584,7 @@
         <a href="#motivos">Por quê</a>
         <a href="#momentos">Momentos</a>
         <a href="#pedido">O pedido</a>
+        <button class="btn" id="btnEditarMobile" type="button">Personalizar</button>
       </div>
     </div>
   </header>
@@ -578,7 +618,7 @@ A gente supera — juntos.</p>
       <aside class="card hero-side reveal">
         <div class="mini">
           <h3>Nossa linha do tempo</h3>
-          <p id="linhaTempo">💗 12 anos juntos
+          <p>💗 12 anos juntos
 👨‍👩‍👧‍👧‍👦 3 filhos (1 menino e 2 meninas)
 🧩 Um amor real — com imperfeições e escolha diária.</p>
 
@@ -597,7 +637,7 @@ A gente supera — juntos.</p>
 
         <div class="mini" style="flex:1;">
           <h3>Nosso resumo</h3>
-          <p id="tresPalavras">Família. Coragem. Nós.</p>
+          <p>Família. Coragem. Nós.</p>
         </div>
       </aside>
     </section>
@@ -618,7 +658,7 @@ E eu quero continuar escolhendo você… todos os dias.</p>
 
     <section id="motivos" class="card section reveal">
       <h2>Por que eu te amo</h2>
-      <p class="lead">Três motivos simples — do nosso jeito. (Minimalista, elegante… e com coração.)</p>
+      <p class="lead">Três motivos simples — do nosso jeito.</p>
 
       <div class="grid">
         <div class="tile">
@@ -638,21 +678,17 @@ E eu quero continuar escolhendo você… todos os dias.</p>
 
     <section id="momentos" class="card section reveal">
       <h2>Momentos</h2>
-      <p class="lead">A galeria abaixo carrega automaticamente as imagens da pasta <b>/fotos</b> do seu GitHub.</p>
+      <p class="lead">A galeria carrega automaticamente as imagens da pasta <b>/fotos</b> do seu GitHub.</p>
 
       <div id="galleryStatus" class="gallery-loading">Carregando fotos…</div>
       <div class="gallery" id="gallery" aria-label="Galeria de momentos" style="margin-top:12px;"></div>
-
-      <p class="lead" style="margin-top:14px;">
-        Se você adicionar novas fotos na pasta, elas aparecem aqui sozinhas (sem editar o site).
-      </p>
     </section>
 
     <section id="pedido" class="card section reveal">
       <div class="proposal">
         <div class="question">
-          <h2 id="perguntaTitle">Bianca… quer casar comigo?</h2>
-          <p id="perguntaSub">Eu não prometo uma vida sem briguinhas por besteira.
+          <h2>Bianca… quer casar comigo?</h2>
+          <p>Eu não prometo uma vida sem briguinhas por besteira.
 Prometo maturidade pra pedir desculpa, humildade pra aprender,
 e amor pra continuar escolhendo você.
 
@@ -682,9 +718,7 @@ e na nossa família linda.</p>
       </div>
     </section>
 
-    <footer>
-      Feito com carinho • <span id="ano"></span>
-    </footer>
+    <footer>Feito com carinho • <span id="ano"></span></footer>
   </main>
 
   <!-- Modal Carta -->
@@ -725,63 +759,63 @@ Quer casar comigo?</div>
 
       <div class="modal-body">
         <p style="margin:0 0 12px; color: rgba(255,255,255,.70);">
-          Edite abaixo e o site muda na hora. (Salva só neste dispositivo.)
+          Edite abaixo e o site muda na hora (salva neste aparelho).
         </p>
 
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-          <label style="display:flex; flex-direction:column; gap:6px;">
-            <span style="color: rgba(255,255,255,.78); font-size: 13px;">Nome dela</span>
-            <input id="inpNomeDela" placeholder="Ex: Bianca" />
-          </label>
-          <label style="display:flex; flex-direction:column; gap:6px;">
-            <span style="color: rgba(255,255,255,.78); font-size: 13px;">Seu nome</span>
-            <input id="inpSeuNome" placeholder="Ex: Jackson" />
-          </label>
+        <div style="display:grid; grid-template-columns: 1fr; gap: 12px;">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <label style="display:flex; flex-direction:column; gap:6px;">
+              <span style="color: rgba(255,255,255,.78); font-size: 13px;">Nome dela</span>
+              <input id="inpNomeDela" placeholder="Ex: Bianca" />
+            </label>
+            <label style="display:flex; flex-direction:column; gap:6px;">
+              <span style="color: rgba(255,255,255,.78); font-size: 13px;">Seu nome</span>
+              <input id="inpSeuNome" placeholder="Ex: Jackson" />
+            </label>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <label style="display:flex; flex-direction:column; gap:6px;">
+              <span style="color: rgba(255,255,255,.78); font-size: 13px;">Local</span>
+              <input id="inpLocal" placeholder="Ex: onde vou pedir" />
+            </label>
+            <label style="display:flex; flex-direction:column; gap:6px;">
+              <span style="color: rgba(255,255,255,.78); font-size: 13px;">Nossa música</span>
+              <input id="inpMusica" placeholder="Ex: Cantor — Música" />
+            </label>
+          </div>
 
           <label style="display:flex; flex-direction:column; gap:6px;">
-            <span style="color: rgba(255,255,255,.78); font-size: 13px;">Local</span>
-            <input id="inpLocal" placeholder="Ex: onde vou pedir" />
-          </label>
-
-          <label style="display:flex; flex-direction:column; gap:6px;">
-            <span style="color: rgba(255,255,255,.78); font-size: 13px;">Nossa música</span>
-            <input id="inpMusica" placeholder="Ex: Cantor — Música" />
-          </label>
-
-          <label style="display:flex; flex-direction:column; gap:6px; grid-column: 1 / -1;">
             <span style="color: rgba(255,255,255,.78); font-size: 13px;">Mensagem curta (painel)</span>
             <input id="inpMsgCurta" placeholder="Ex: 12 anos… e eu quero o “pra sempre”." />
           </label>
 
-          <label style="display:flex; flex-direction:column; gap:6px; grid-column: 1 / -1;">
+          <label style="display:flex; flex-direction:column; gap:6px;">
             <span style="color: rgba(255,255,255,.78); font-size: 13px;">Texto da história</span>
             <textarea id="inpHistoria" rows="4"></textarea>
           </label>
 
-          <label style="display:flex; flex-direction:column; gap:6px; grid-column: 1 / -1;">
+          <label style="display:flex; flex-direction:column; gap:6px;">
             <span style="color: rgba(255,255,255,.78); font-size: 13px;">Texto da carta</span>
             <textarea id="inpCarta" rows="7"></textarea>
           </label>
 
-          <label style="display:flex; flex-direction:column; gap:6px;">
-            <span style="color: rgba(255,255,255,.78); font-size: 13px;">Data do pedido</span>
-            <input id="inpData" type="date" />
-          </label>
-
-          <label style="display:flex; flex-direction:column; gap:6px;">
-            <span style="color: rgba(255,255,255,.78); font-size: 13px;">Hora (opcional)</span>
-            <input id="inpHora" type="time" />
-          </label>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <label style="display:flex; flex-direction:column; gap:6px;">
+              <span style="color: rgba(255,255,255,.78); font-size: 13px;">Data do pedido</span>
+              <input id="inpData" type="date" />
+            </label>
+            <label style="display:flex; flex-direction:column; gap:6px;">
+              <span style="color: rgba(255,255,255,.78); font-size: 13px;">Hora (opcional)</span>
+              <input id="inpHora" type="time" />
+            </label>
+          </div>
         </div>
 
         <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-          <button class="btn btn-primary" id="btnSalvar" type="button">Salvar no navegador</button>
+          <button class="btn btn-primary" id="btnSalvar" type="button">Salvar</button>
           <button class="btn" id="btnReset" type="button">Resetar</button>
         </div>
-
-        <p style="margin:14px 0 0; color: rgba(255,255,255,.55); font-size: 12px; line-height:1.6;">
-          * Isso salva só neste aparelho (localStorage).
-        </p>
       </div>
     </div>
   </div>
@@ -793,7 +827,6 @@ Quer casar comigo?</div>
       const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
 
       // ====== CONFIG DA GALERIA (SEU REPO) ======
-      // Se um dia você mudar o repo/pasta, altere aqui:
       const GITHUB_OWNER = "Jacker-s";
       const GITHUB_REPO  = "bibi";
       const GITHUB_PATH  = "fotos";
@@ -832,8 +865,7 @@ Quer casar comigo?`,
         hora: ""
       };
 
-      const storageKey = "pedidoCasamentoConfig:v3";
-
+      const storageKey = "pedidoCasamentoConfig:v4";
       function safeParse(json){ try{ return JSON.parse(json); }catch{ return null; } }
       function load(){
         const raw = localStorage.getItem(storageKey);
@@ -842,16 +874,12 @@ Quer casar comigo?`,
       }
       function save(cfg){ localStorage.setItem(storageKey, JSON.stringify(cfg)); }
       function reset(){ localStorage.removeItem(storageKey); }
-
       let state = load();
 
       const el = {
         nomeDela: $("#nomeDela"),
         badgeText: $("#badgeText"),
         heroTitle: $("#heroTitle"),
-        heroSub: $("#heroSub"),
-        pillLocal: $("#pillLocal"),
-        pillMusica: $("#pillMusica"),
         historiaText: $("#historiaText"),
 
         panelNome: $("#panelNome"),
@@ -859,6 +887,9 @@ Quer casar comigo?`,
         panelLocal: $("#panelLocal"),
         panelMsg: $("#panelMsg"),
         panelStatus: $("#panelStatus"),
+
+        pillLocal: $("#pillLocal"),
+        pillMusica: $("#pillMusica"),
 
         modalCarta: $("#modalCarta"),
         modalConfig: $("#modalConfig"),
@@ -869,8 +900,9 @@ Quer casar comigo?`,
 
         btnMenu: $("#btnMenu"),
         mobileDrawer: $("#mobileDrawer"),
-
         btnEditar: $("#btnEditar"),
+        btnEditarMobile: $("#btnEditarMobile"),
+
         btnAbrirConfig: $("#btnAbrirConfig"),
         btnFecharConfig: $("#btnFecharConfig"),
         btnSalvar: $("#btnSalvar"),
@@ -888,6 +920,7 @@ Quer casar comigo?`,
         btnCompartilhar: $("#btnCompartilhar"),
 
         ano: $("#ano"),
+
         inpNomeDela: $("#inpNomeDela"),
         inpSeuNome: $("#inpSeuNome"),
         inpLocal: $("#inpLocal"),
@@ -904,11 +937,8 @@ Quer casar comigo?`,
         galleryStatus: $("#galleryStatus")
       };
 
-      // Reveal on scroll
       const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting) e.target.classList.add("show");
-        });
+        entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add("show"); });
       }, { threshold: 0.12 });
       $$(".reveal").forEach(n=>io.observe(n));
 
@@ -957,7 +987,6 @@ Quer casar comigo?`,
         el.badgeText.textContent = state.badge || defaults.badge;
 
         el.heroTitle.textContent = `${state.nomeDela || defaults.nomeDela}, eu escolho você.`;
-        el.heroSub.textContent = $("#heroSub").textContent; // mantem texto do HTML (se quiser, dá pra editar também)
 
         el.panelNome.textContent = state.nomeDela || defaults.nomeDela;
         el.panelSeuNome.textContent = state.seuNome || defaults.seuNome;
@@ -1020,14 +1049,12 @@ Quer casar comigo?`,
         el.mobileDrawer.classList.toggle("show", open);
         el.btnMenu.setAttribute("aria-expanded", open ? "true" : "false");
       }
-
-      // Fecha menu ao clicar em link
       el.mobileDrawer.addEventListener("click", (e)=>{
         const a = e.target.closest("a");
         if(a) toggleMenu(false);
       });
 
-      // Botão NÃO foge (mouse + touch)
+      // NÃO foge (mouse + touch)
       let noMoves = 0;
       function dodgeNo(){
         const btn = el.btnNao;
@@ -1044,9 +1071,7 @@ Quer casar comigo?`,
         btn.style.zIndex = 40;
 
         noMoves++;
-        if(noMoves === 3){
-          $("#msgPequena").textContent = "(Ele não quer te contrariar… 😅)";
-        }
+        if(noMoves === 3){ $("#msgPequena").textContent = "(Ele não quer te contrariar… 😅)"; }
         if(noMoves >= 6){
           $("#msgPequena").textContent = "(Ok, o “NÃO” entrou em férias. Vai de SIM 💗)";
           btn.disabled = true;
@@ -1091,11 +1116,7 @@ Quer casar comigo?`,
           ctx.clearRect(0,0,window.innerWidth, window.innerHeight);
 
           pieces.forEach(p=>{
-            p.x += p.vx;
-            p.y += p.vy;
-            p.vy += 0.03;
-            p.rot += p.vr;
-
+            p.x += p.vx; p.y += p.vy; p.vy += 0.03; p.rot += p.vr;
             if(p.x < -40) p.x = window.innerWidth + 40;
             if(p.x > window.innerWidth + 40) p.x = -40;
 
@@ -1105,23 +1126,14 @@ Quer casar comigo?`,
             ctx.globalAlpha = 0.95;
             ctx.fillStyle = p.col;
 
-            if(p.shape === "rect"){
-              ctx.fillRect(-p.r, -p.r/2, p.r*2, p.r);
-            }else{
-              ctx.beginPath();
-              ctx.arc(0,0,p.r,0,Math.PI*2);
-              ctx.fill();
-            }
+            if(p.shape === "rect") ctx.fillRect(-p.r, -p.r/2, p.r*2, p.r);
+            else { ctx.beginPath(); ctx.arc(0,0,p.r,0,Math.PI*2); ctx.fill(); }
             ctx.restore();
           });
 
-          if(elapsed < durationMs){
-            requestAnimationFrame(frame);
-          }else{
-            canvas.style.display = "none";
-          }
+          if(elapsed < durationMs) requestAnimationFrame(frame);
+          else canvas.style.display = "none";
         }
-
         window.addEventListener("resize", resize, { once:true });
         requestAnimationFrame(frame);
       }
@@ -1130,7 +1142,7 @@ Quer casar comigo?`,
         el.panelStatus.textContent = "ELA DISSE SIM!!! 💍💗";
         startConfetti();
 
-        // Reseta botão NÃO
+        // Reseta NÃO
         el.btnNao.style.position = "";
         el.btnNao.style.left = "";
         el.btnNao.style.top = "";
@@ -1149,7 +1161,6 @@ Obrigado pela nossa história e pela nossa família.
 Eu prometo continuar te escolhendo — sempre.
 
 Assinado: ${state.seuNome || defaults.seuNome}.`;
-
         openModal(el.modalCarta);
       }
 
@@ -1159,17 +1170,10 @@ Assinado: ${state.seuNome || defaults.seuNome}.`;
         const url = location.href;
 
         try{
-          if(navigator.share){
-            await navigator.share({ title, text, url });
-          }else{
-            await navigator.clipboard.writeText(`${title}\n${text}\n${url}`);
-            alert("Link copiado! ✨");
-          }
+          if(navigator.share) await navigator.share({ title, text, url });
+          else { await navigator.clipboard.writeText(`${title}\n${text}\n${url}`); alert("Link copiado! ✨"); }
         }catch{
-          try{
-            await navigator.clipboard.writeText(url);
-            alert("Link copiado! ✨");
-          }catch{}
+          try{ await navigator.clipboard.writeText(url); alert("Link copiado! ✨"); }catch{}
         }
       }
 
@@ -1179,32 +1183,20 @@ Assinado: ${state.seuNome || defaults.seuNome}.`;
         node.scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
-      // ========= GALERIA (carrega fotos do GitHub) =========
+      // Galeria GitHub
       function isImageName(name){
         const n = (name || "").toLowerCase();
         return n.endsWith(".jpg") || n.endsWith(".jpeg") || n.endsWith(".png") || n.endsWith(".webp") || n.endsWith(".gif");
       }
 
-      function layoutClassByIndex(i){
-        // deixa algumas fotos “premium”
-        if(i === 0) return "gitem wide tall";
-        if(i === 1) return "gitem tall";
-        if(i === 4) return "gitem wide";
-        return "gitem";
-      }
-
       async function loadGallery(){
         const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_PATH}`;
         el.galleryStatus.textContent = "Carregando fotos…";
+        el.galleryStatus.style.display = "block";
 
         try{
-          const res = await fetch(url, {
-            headers: { "Accept": "application/vnd.github+json" }
-          });
-
-          if(!res.ok){
-            throw new Error(`GitHub API respondeu ${res.status}`);
-          }
+          const res = await fetch(url, { headers: { "Accept": "application/vnd.github+json" } });
+          if(!res.ok) throw new Error(`GitHub API respondeu ${res.status}`);
 
           const data = await res.json();
           const files = Array.isArray(data) ? data : [];
@@ -1224,7 +1216,7 @@ Assinado: ${state.seuNome || defaults.seuNome}.`;
 
           images.forEach((imgFile, i) => {
             const wrap = document.createElement("div");
-            wrap.className = layoutClassByIndex(i);
+            wrap.className = "gitem";
 
             const img = document.createElement("img");
             img.src = imgFile.download_url;
@@ -1243,19 +1235,21 @@ Assinado: ${state.seuNome || defaults.seuNome}.`;
         }catch(err){
           el.galleryStatus.textContent =
             "Não consegui carregar as fotos agora. " +
-            "Se o repo estiver privado ou a API estiver limitada, tente recarregar. " +
+            "Se o repo estiver privado ou a API estiver limitada, recarregue. " +
             "Detalhe: " + (err && err.message ? err.message : "erro desconhecido");
         }
       }
 
-      // ========= Eventos =========
+      // Eventos
       el.btnMenu.addEventListener("click", ()=> toggleMenu());
-      el.btnEditar.addEventListener("click", ()=>{ fillInputs(); openModal(el.modalConfig); });
-      el.btnAbrirConfig.addEventListener("click", ()=>{ fillInputs(); openModal(el.modalConfig); });
+      el.btnEditar?.addEventListener("click", ()=>{ fillInputs(); openModal(el.modalConfig); });
+      el.btnEditarMobile.addEventListener("click", ()=>{ toggleMenu(false); fillInputs(); openModal(el.modalConfig); });
+
+      $("#btnAbrirConfig").addEventListener("click", ()=>{ fillInputs(); openModal(el.modalConfig); });
       el.btnFecharConfig.addEventListener("click", ()=> closeModal(el.modalConfig));
       el.modalConfig.addEventListener("click", (e)=>{ if(e.target === el.modalConfig) closeModal(el.modalConfig); });
 
-      el.btnAbrirCarta.addEventListener("click", ()=> openModal(el.modalCarta));
+      $("#btnAbrirCarta").addEventListener("click", ()=> openModal(el.modalCarta));
       el.btnFecharCarta.addEventListener("click", ()=> closeModal(el.modalCarta));
       el.modalCarta.addEventListener("click", (e)=>{ if(e.target === el.modalCarta) closeModal(el.modalCarta); });
 
@@ -1275,12 +1269,8 @@ Assinado: ${state.seuNome || defaults.seuNome}.`;
 
       el.btnCopiarCarta.addEventListener("click", async ()=>{
         const text = (state.carta || defaults.carta);
-        try{
-          await navigator.clipboard.writeText(text);
-          alert("Carta copiada 💗");
-        }catch{
-          alert("Não consegui copiar automaticamente. Selecione e copie manualmente 🙈");
-        }
+        try{ await navigator.clipboard.writeText(text); alert("Carta copiada 💗"); }
+        catch{ alert("Não consegui copiar automaticamente. Selecione e copie manualmente 🙈"); }
       });
 
       el.btnIrSim.addEventListener("click", ()=>{
@@ -1291,16 +1281,12 @@ Assinado: ${state.seuNome || defaults.seuNome}.`;
       el.btnRolar.addEventListener("click", ()=> scrollToId("#motivos"));
       el.btnIrPedido.addEventListener("click", ()=> scrollToId("#pedido"));
 
-      // Importante pro mobile:
       el.btnNao.addEventListener("pointerenter", dodgeNo);
       el.btnNao.addEventListener("pointerdown", (e)=>{ e.preventDefault(); dodgeNo(); });
       el.btnNao.addEventListener("click", (e)=>{ e.preventDefault(); dodgeNo(); });
 
       el.btnSim.addEventListener("click", onYes);
       el.btnCompartilhar.addEventListener("click", share);
-
-      // Fecha o menu ao scroll (mobile)
-      window.addEventListener("scroll", ()=> toggleMenu(false), { passive:true });
 
       // Init
       apply();
