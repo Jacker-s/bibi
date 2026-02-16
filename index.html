@@ -4,19 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Bianca, quer casar comigo? 💍</title>
-  <meta name="description" content="Um pedido de casamento com design elegante e romântico." />
+  <meta name="description" content="Um pedido de casamento elegante e romântico." />
 
   <style>
     :root{
       --bg0:#0b0a10;
       --bg1:#120d1a;
-      --card: rgba(255,255,255,.08);
-      --card2: rgba(255,255,255,.12);
-      --stroke: rgba(255,255,255,.14);
       --text: rgba(255,255,255,.92);
       --muted: rgba(255,255,255,.70);
 
-      /* romântico */
       --pink:#ff5aa5;
       --rose:#ff3d7f;
       --peach:#ffb3c7;
@@ -25,7 +21,6 @@
 
       --shadow: 0 20px 70px rgba(0,0,0,.45);
       --radius: 28px;
-
       --maxw: 1120px;
       --blur: 18px;
       --ease: cubic-bezier(.2,.8,.2,1);
@@ -54,8 +49,7 @@
     }
 
     a{ color:inherit; text-decoration:none; }
-
-    .wrap{ max-width:var(--maxw); margin:0 auto; padding: 28px 22px 90px; }
+    .wrap{ max-width:var(--maxw); margin:0 auto; padding: 18px 18px 90px; }
 
     header{
       position:sticky; top:0; z-index:20;
@@ -67,25 +61,29 @@
     .nav{
       max-width:var(--maxw);
       margin:0 auto;
-      padding: 14px 22px;
+      padding: 12px 18px;
       display:flex; align-items:center; justify-content:space-between;
-      gap:16px;
+      gap:12px;
     }
     .brand{
       display:flex; align-items:center; gap:10px;
       letter-spacing:.2px;
       font-weight:600;
+      min-width: 160px;
     }
     .logo{
       width:28px; height:28px; border-radius:10px;
       background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), rgba(255,255,255,.15) 40%, rgba(255,90,165,.35) 70%, rgba(183,167,255,.25));
       border:1px solid rgba(255,255,255,.22);
       box-shadow: 0 10px 35px rgba(255,90,165,.18);
+      flex: 0 0 auto;
     }
+
     .navlinks{
-      display:flex; gap:14px; flex-wrap:wrap;
+      display:flex; gap:10px; flex-wrap:wrap;
       color: var(--muted);
       font-size:14px;
+      align-items:center;
     }
     .navlinks a{
       padding:8px 10px;
@@ -96,6 +94,7 @@
       background: rgba(255,255,255,.07);
       color: var(--text);
     }
+
     .cta-mini{ display:flex; gap:10px; align-items:center; }
 
     .btn{
@@ -110,6 +109,7 @@
       -webkit-backdrop-filter: blur(var(--blur));
       transition: transform .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease);
       box-shadow: 0 18px 45px rgba(0,0,0,.25);
+      touch-action: manipulation;
     }
     .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.22); }
     .btn:active{ transform: translateY(0px) scale(.99); }
@@ -121,11 +121,44 @@
     }
     .btn-primary:hover{ background: linear-gradient(135deg, rgba(255,61,127,.98), rgba(183,167,255,.75)); }
 
+    /* MENU MOBILE */
+    .burger{ display:none; }
+    @media (max-width: 780px){
+      .wrap{ padding: 14px 14px 80px; }
+      .nav{ padding: 12px 14px; }
+      .navlinks{ display:none; }
+      .burger{ display:inline-flex; }
+      .cta-mini .btn{ padding: 11px 13px; }
+    }
+    .mobile-drawer{
+      display:none;
+      padding: 0 14px 14px;
+      max-width: var(--maxw);
+      margin: 0 auto;
+    }
+    .mobile-drawer.show{ display:block; }
+    .mobile-drawer .links{
+      display:flex; flex-direction:column; gap:10px;
+      padding: 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color: var(--muted);
+    }
+    .mobile-drawer .links a{
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.86);
+    }
+
+    /* HERO */
     .hero{
-      padding: 56px 0 10px;
+      padding: 24px 0 10px;
       display:grid;
       grid-template-columns: 1.15fr .85fr;
-      gap: 26px;
+      gap: 16px;
       align-items:stretch;
     }
     @media (max-width: 920px){ .hero{ grid-template-columns: 1fr; } }
@@ -140,9 +173,9 @@
       overflow:hidden;
     }
     .hero-main{
-      padding: 34px 30px 28px;
+      padding: 28px 22px 22px;
       position:relative;
-      min-height: 420px;
+      min-height: 360px;
     }
     .glow{
       position:absolute; inset:-40px -60px auto auto;
@@ -168,33 +201,34 @@
       background: linear-gradient(135deg, var(--rose), var(--lav));
       box-shadow: 0 0 0 4px rgba(255,90,165,.15);
     }
+
     h1{
-      margin: 18px 0 12px;
-      font-size: clamp(34px, 4vw, 56px);
+      margin: 16px 0 10px;
+      font-size: clamp(30px, 4.4vw, 56px);
       letter-spacing: -0.02em;
-      line-height: 1.02;
+      line-height: 1.06;
     }
     .sub{
       margin:0;
-      max-width: 60ch;
+      max-width: 62ch;
       color: var(--muted);
       font-size: 16px;
       line-height: 1.6;
       white-space: pre-line;
     }
     .hero-actions{
-      margin-top: 22px;
-      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top: 18px;
+      display:flex; gap:10px; flex-wrap:wrap;
       align-items:center;
     }
 
     .hero-side{
-      padding: 18px;
+      padding: 16px;
       display:flex; flex-direction:column; gap:12px;
-      min-height: 420px;
+      min-height: 360px;
     }
     .mini{
-      padding: 18px 18px 16px;
+      padding: 16px;
       border-radius: 22px;
       background: rgba(255,255,255,.07);
       border: 1px solid rgba(255,255,255,.12);
@@ -225,7 +259,7 @@
       color: rgba(255,255,255,.78);
     }
 
-    .section{ margin-top: 22px; padding: 22px; }
+    .section{ margin-top: 16px; padding: 20px; }
     .section h2{
       margin: 0 0 10px;
       font-size: 22px;
@@ -277,52 +311,62 @@
       opacity:.9;
     }
 
+    /* GALERIA REAL (dinâmica) */
     .gallery{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 12px;
     }
     @media (max-width: 920px){ .gallery{ grid-template-columns: repeat(6, 1fr); } }
-    .ph{
+    .gitem{
       grid-column: span 4;
-      height: 170px;
       border-radius: 24px;
-      background:
-        radial-gradient(200px 120px at 25% 30%, rgba(255,90,165,.25), transparent 60%),
-        radial-gradient(220px 140px at 70% 65%, rgba(183,167,255,.18), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
       border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
       overflow:hidden;
       position:relative;
+      height: 180px;
+      box-shadow: 0 18px 55px rgba(0,0,0,.22);
     }
-    .ph:after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.10) 40%, transparent 70%);
-      transform: translateX(-60%);
-      animation: sheen 3.5s infinite;
-      opacity:.55;
+    .gitem.wide{ grid-column: span 8; }
+    .gitem.tall{ height: 260px; }
+
+    .gitem img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.01);
+      filter: saturate(1.04) contrast(1.02);
     }
-    @keyframes sheen{
-      0%{ transform: translateX(-70%); }
-      55%{ transform: translateX(120%); }
-      100%{ transform: translateX(120%); }
-    }
-    .ph small{
-      position:absolute; left:14px; bottom:12px;
-      color: rgba(255,255,255,.70);
+    .gcap{
+      position:absolute; left:12px; bottom:12px;
+      color: rgba(255,255,255,.84);
       font-size: 12px;
       letter-spacing:.2px;
-      background: rgba(0,0,0,.22);
+      background: rgba(0,0,0,.30);
       border: 1px solid rgba(255,255,255,.12);
       padding: 6px 10px;
       border-radius: 999px;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
+      max-width: calc(100% - 24px);
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
     }
-    .ph.wide{ grid-column: span 8; }
-    .ph.tall{ height: 250px; }
 
+    .gallery-loading{
+      padding: 14px 14px;
+      border-radius: 18px;
+      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.75);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* PEDIDO */
     .proposal{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -330,7 +374,7 @@
     }
     @media (max-width: 920px){ .proposal{ grid-template-columns: 1fr; } }
 
-    .question{ padding: 24px; }
+    .question{ padding: 22px; }
     .question h2{
       margin:0 0 8px;
       font-size: 26px;
@@ -352,14 +396,10 @@
       background: linear-gradient(135deg, rgba(255,61,127,.98), rgba(255,179,199,.85));
       box-shadow: 0 22px 75px rgba(255,61,127,.25);
     }
-    .btn-no{
-      position:relative;
-      padding: 12px 18px;
-      background: rgba(255,255,255,.10);
-    }
+    .btn-no{ position:relative; padding: 12px 18px; background: rgba(255,255,255,.10); }
 
     .panel{
-      padding: 22px;
+      padding: 20px;
       display:flex; flex-direction:column; gap:10px;
     }
     .panel .line{
@@ -373,11 +413,12 @@
     }
     .panel .line span{ color: var(--muted); }
 
+    /* MODAIS */
     .modal{
       position:fixed; inset:0;
       display:none;
       align-items:center; justify-content:center;
-      padding: 20px;
+      padding: 16px;
       z-index: 50;
       background: rgba(0,0,0,.55);
       backdrop-filter: blur(10px);
@@ -385,7 +426,7 @@
     }
     .modal.show{ display:flex; }
     .modal-card{
-      width:min(740px, 100%);
+      width:min(760px, 100%);
       border-radius: 28px;
       background: linear-gradient(180deg, rgba(255,255,255,.13), rgba(255,255,255,.08));
       border: 1px solid rgba(255,255,255,.16);
@@ -393,14 +434,10 @@
       overflow:hidden;
     }
     .modal-top{
-      padding: 22px 22px 10px;
+      padding: 18px 18px 10px;
       display:flex; justify-content:space-between; align-items:center; gap:12px;
     }
-    .modal-top h3{
-      margin:0;
-      font-size: 18px;
-      letter-spacing:-.01em;
-    }
+    .modal-top h3{ margin:0; font-size: 18px; letter-spacing:-.01em; }
     .close{
       width: 40px; height: 40px;
       border-radius: 999px;
@@ -409,10 +446,11 @@
       color: var(--text);
       cursor:pointer;
       transition: transform .25s var(--ease), background .25s var(--ease);
+      touch-action: manipulation;
     }
     .close:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); }
     .modal-body{
-      padding: 0 22px 22px;
+      padding: 0 18px 18px;
       color: var(--muted);
       line-height: 1.75;
       white-space: pre-line;
@@ -420,7 +458,7 @@
     .modal-body .big{
       margin: 8px 0 12px;
       color: rgba(255,255,255,.92);
-      font-size: 28px;
+      font-size: 26px;
       letter-spacing:-.02em;
       line-height:1.15;
     }
@@ -437,11 +475,11 @@
     }
 
     footer{
-      margin-top: 22px;
+      margin-top: 18px;
       color: rgba(255,255,255,.55);
       font-size: 13px;
       text-align:center;
-      padding: 26px 0 0;
+      padding: 22px 0 0;
     }
 
     .reveal{
@@ -449,11 +487,14 @@
       transform: translateY(10px);
       transition: opacity .9s var(--ease), transform .9s var(--ease);
     }
-    .reveal.show{
-      opacity:1;
-      transform: translateY(0);
+    .reveal.show{ opacity:1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce){
+      .reveal{ opacity:1; transform:none; transition:none; }
+      .gitem img{ transform:none; }
     }
 
+    /* inputs */
     input, textarea{
       width:100%;
       padding: 11px 12px;
@@ -492,10 +533,20 @@
       </div>
 
       <div class="cta-mini">
+        <button class="btn burger" id="btnMenu" type="button" aria-label="Abrir menu">☰</button>
         <button class="btn" id="btnEditar" type="button">Personalizar</button>
         <button class="btn btn-primary" id="btnIrPedido" type="button">Ir pro pedido</button>
       </div>
     </nav>
+
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="links">
+        <a href="#historia">Nossa história</a>
+        <a href="#motivos">Por quê</a>
+        <a href="#momentos">Momentos</a>
+        <a href="#pedido">O pedido</a>
+      </div>
+    </div>
   </header>
 
   <main class="wrap">
@@ -514,8 +565,8 @@
         </h1>
 
         <p class="sub" id="heroSub">A gente é um casal atípico.
-Às vezes briga por besteira, às vezes se entende no olhar.
-Mas uma coisa nunca mudou: quando a fase aperta, a gente não solta.
+Às vezes briga por besteira… mas sempre volta pro que importa.
+Quando a fase aperta, a gente não solta.
 A gente supera — juntos.</p>
 
         <div class="hero-actions">
@@ -529,7 +580,7 @@ A gente supera — juntos.</p>
           <h3>Nossa linha do tempo</h3>
           <p id="linhaTempo">💗 12 anos juntos
 👨‍👩‍👧‍👧‍👦 3 filhos (1 menino e 2 meninas)
-🧩 Um amor real, com imperfeições… e com escolha diária.</p>
+🧩 Um amor real — com imperfeições e escolha diária.</p>
 
           <div class="pillrow">
             <span class="pill" id="pillLocal">📍 Nosso lugar</span>
@@ -572,33 +623,28 @@ E eu quero continuar escolhendo você… todos os dias.</p>
       <div class="grid">
         <div class="tile">
           <strong>Porque você segurou minha mão quando foi difícil</strong>
-          <span id="m1">A gente já enfrentou coisas que muita gente desistiria. E você ficou.</span>
+          <span>A gente já enfrentou coisas que muita gente desistiria. E você ficou.</span>
         </div>
         <div class="tile">
           <strong>Porque você é a base da nossa família</strong>
-          <span id="m2">Nosso menino e nossas duas meninas têm em você um amor que organiza o mundo.</span>
+          <span>Nosso menino e nossas duas meninas têm em você um amor que organiza o mundo.</span>
         </div>
         <div class="tile">
           <strong>Porque com você eu sinto “nós”</strong>
-          <span id="m3">Mesmo quando a gente briga, lá no fundo eu sei: é você, é a gente, é pra sempre.</span>
+          <span>Mesmo quando a gente briga, lá no fundo eu sei: é você, é a gente, é pra sempre.</span>
         </div>
       </div>
     </section>
 
     <section id="momentos" class="card section reveal">
       <h2>Momentos</h2>
-      <p class="lead">Se quiser, você pode colocar fotos de vocês e das crianças aqui. Por enquanto, deixei placeholders.</p>
+      <p class="lead">A galeria abaixo carrega automaticamente as imagens da pasta <b>/fotos</b> do seu GitHub.</p>
 
-      <div class="gallery" aria-label="Galeria de momentos">
-        <div class="ph wide tall"><small>Foto 1 (família)</small></div>
-        <div class="ph tall"><small>Foto 2</small></div>
-        <div class="ph"><small>Foto 3</small></div>
-        <div class="ph"><small>Foto 4</small></div>
-        <div class="ph wide"><small>Foto 5 (12 anos)</small></div>
-      </div>
+      <div id="galleryStatus" class="gallery-loading">Carregando fotos…</div>
+      <div class="gallery" id="gallery" aria-label="Galeria de momentos" style="margin-top:12px;"></div>
 
       <p class="lead" style="margin-top:14px;">
-        Dica rápida pro GitHub Pages: se você colocar imagens na pasta <b>images/</b>, eu consigo adaptar pra aparecerem aqui.
+        Se você adicionar novas fotos na pasta, elas aparecem aqui sozinhas (sem editar o site).
       </p>
     </section>
 
@@ -627,7 +673,7 @@ e na nossa família linda.</p>
 
         <div class="panel">
           <div class="line"><div>Nome dela</div><span id="panelNome">Bianca</span></div>
-          <div class="line"><div>Meu nome</div><span id="panelSeuNome">Jackson</span></div>
+          <div class="line"><div>Meu nome</div><span id="panelSeuNome">Seu amor</span></div>
           <div class="line"><div>Local</div><span id="panelLocal">Nosso lugar</span></div>
           <div class="line"><div>Mensagem curta</div><span id="panelMsg">12 anos… e eu quero o “pra sempre”.</span></div>
           <div class="line"><div>Status</div><span id="panelStatus">Aguardando o “sim” 😳</span></div>
@@ -679,7 +725,7 @@ Quer casar comigo?</div>
 
       <div class="modal-body">
         <p style="margin:0 0 12px; color: rgba(255,255,255,.70);">
-          Edite abaixo e o site muda na hora. (Você pode salvar e publicar no GitHub Pages.)
+          Edite abaixo e o site muda na hora. (Salva só neste dispositivo.)
         </p>
 
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
@@ -689,7 +735,7 @@ Quer casar comigo?</div>
           </label>
           <label style="display:flex; flex-direction:column; gap:6px;">
             <span style="color: rgba(255,255,255,.78); font-size: 13px;">Seu nome</span>
-            <input id="inpSeuNome" placeholder="Ex: (seu nome)" />
+            <input id="inpSeuNome" placeholder="Ex: Jackson" />
           </label>
 
           <label style="display:flex; flex-direction:column; gap:6px;">
@@ -734,7 +780,7 @@ Quer casar comigo?</div>
         </div>
 
         <p style="margin:14px 0 0; color: rgba(255,255,255,.55); font-size: 12px; line-height:1.6;">
-          * “Salvar no navegador” guarda as infos só neste dispositivo (localStorage).
+          * Isso salva só neste aparelho (localStorage).
         </p>
       </div>
     </div>
@@ -745,6 +791,12 @@ Quer casar comigo?</div>
       "use strict";
       const $ = (sel, root=document) => root.querySelector(sel);
       const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+      // ====== CONFIG DA GALERIA (SEU REPO) ======
+      // Se um dia você mudar o repo/pasta, altere aqui:
+      const GITHUB_OWNER = "Jacker-s";
+      const GITHUB_REPO  = "bibi";
+      const GITHUB_PATH  = "fotos";
 
       const defaults = {
         nomeDela: "Bianca",
@@ -780,7 +832,7 @@ Quer casar comigo?`,
         hora: ""
       };
 
-      const storageKey = "pedidoCasamentoConfig:v2";
+      const storageKey = "pedidoCasamentoConfig:v3";
 
       function safeParse(json){ try{ return JSON.parse(json); }catch{ return null; } }
       function load(){
@@ -797,7 +849,6 @@ Quer casar comigo?`,
         nomeDela: $("#nomeDela"),
         badgeText: $("#badgeText"),
         heroTitle: $("#heroTitle"),
-        heroTitle2: $("#heroTitle2"),
         heroSub: $("#heroSub"),
         pillLocal: $("#pillLocal"),
         pillMusica: $("#pillMusica"),
@@ -815,6 +866,9 @@ Quer casar comigo?`,
         cartaTexto: $("#cartaTexto"),
 
         countdown: $("#countdown"),
+
+        btnMenu: $("#btnMenu"),
+        mobileDrawer: $("#mobileDrawer"),
 
         btnEditar: $("#btnEditar"),
         btnAbrirConfig: $("#btnAbrirConfig"),
@@ -844,23 +898,19 @@ Quer casar comigo?`,
         inpData: $("#inpData"),
         inpHora: $("#inpHora"),
 
-        confetti: $("#confetti")
+        confetti: $("#confetti"),
+
+        gallery: $("#gallery"),
+        galleryStatus: $("#galleryStatus")
       };
 
+      // Reveal on scroll
       const io = new IntersectionObserver((entries)=>{
         entries.forEach(e=>{
           if(e.isIntersecting) e.target.classList.add("show");
         });
       }, { threshold: 0.12 });
       $$(".reveal").forEach(n=>io.observe(n));
-
-      function formatDateBR(isoDate){
-        if(!isoDate) return null;
-        const [y,m,d] = isoDate.split("-").map(Number);
-        if(!y || !m || !d) return null;
-        const dt = new Date(y, m-1, d);
-        return new Intl.DateTimeFormat("pt-BR", { day:"2-digit", month:"long", year:"numeric" }).format(dt);
-      }
 
       function getTargetDate(cfg){
         let iso = cfg.dataISO;
@@ -907,6 +957,7 @@ Quer casar comigo?`,
         el.badgeText.textContent = state.badge || defaults.badge;
 
         el.heroTitle.textContent = `${state.nomeDela || defaults.nomeDela}, eu escolho você.`;
+        el.heroSub.textContent = $("#heroSub").textContent; // mantem texto do HTML (se quiser, dá pra editar também)
 
         el.panelNome.textContent = state.nomeDela || defaults.nomeDela;
         el.panelSeuNome.textContent = state.seuNome || defaults.seuNome;
@@ -963,7 +1014,20 @@ Quer casar comigo?`,
         return cfg;
       }
 
-      // Botão NÃO foge
+      // Menu mobile
+      function toggleMenu(force){
+        const open = (typeof force === "boolean") ? force : !el.mobileDrawer.classList.contains("show");
+        el.mobileDrawer.classList.toggle("show", open);
+        el.btnMenu.setAttribute("aria-expanded", open ? "true" : "false");
+      }
+
+      // Fecha menu ao clicar em link
+      el.mobileDrawer.addEventListener("click", (e)=>{
+        const a = e.target.closest("a");
+        if(a) toggleMenu(false);
+      });
+
+      // Botão NÃO foge (mouse + touch)
       let noMoves = 0;
       function dodgeNo(){
         const btn = el.btnNao;
@@ -1115,14 +1179,85 @@ Assinado: ${state.seuNome || defaults.seuNome}.`;
         node.scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
-      el.btnAbrirCarta.addEventListener("click", ()=> openModal(el.modalCarta));
-      el.btnFecharCarta.addEventListener("click", ()=> closeModal(el.modalCarta));
-      el.modalCarta.addEventListener("click", (e)=>{ if(e.target === el.modalCarta) closeModal(el.modalCarta); });
+      // ========= GALERIA (carrega fotos do GitHub) =========
+      function isImageName(name){
+        const n = (name || "").toLowerCase();
+        return n.endsWith(".jpg") || n.endsWith(".jpeg") || n.endsWith(".png") || n.endsWith(".webp") || n.endsWith(".gif");
+      }
 
+      function layoutClassByIndex(i){
+        // deixa algumas fotos “premium”
+        if(i === 0) return "gitem wide tall";
+        if(i === 1) return "gitem tall";
+        if(i === 4) return "gitem wide";
+        return "gitem";
+      }
+
+      async function loadGallery(){
+        const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_PATH}`;
+        el.galleryStatus.textContent = "Carregando fotos…";
+
+        try{
+          const res = await fetch(url, {
+            headers: { "Accept": "application/vnd.github+json" }
+          });
+
+          if(!res.ok){
+            throw new Error(`GitHub API respondeu ${res.status}`);
+          }
+
+          const data = await res.json();
+          const files = Array.isArray(data) ? data : [];
+          const images = files
+            .filter(f => f && f.type === "file" && isImageName(f.name) && f.download_url)
+            .sort((a,b) => (a.name || "").localeCompare(b.name || "", "pt-BR"));
+
+          el.gallery.innerHTML = "";
+
+          if(images.length === 0){
+            el.galleryStatus.textContent =
+              "Não achei imagens na pasta /fotos. Coloque arquivos .jpg/.png lá e recarregue a página.";
+            return;
+          }
+
+          el.galleryStatus.style.display = "none";
+
+          images.forEach((imgFile, i) => {
+            const wrap = document.createElement("div");
+            wrap.className = layoutClassByIndex(i);
+
+            const img = document.createElement("img");
+            img.src = imgFile.download_url;
+            img.alt = `Momento ${i+1}`;
+            img.loading = "lazy";
+            img.decoding = "async";
+
+            const cap = document.createElement("div");
+            cap.className = "gcap";
+            cap.textContent = imgFile.name;
+
+            wrap.appendChild(img);
+            wrap.appendChild(cap);
+            el.gallery.appendChild(wrap);
+          });
+        }catch(err){
+          el.galleryStatus.textContent =
+            "Não consegui carregar as fotos agora. " +
+            "Se o repo estiver privado ou a API estiver limitada, tente recarregar. " +
+            "Detalhe: " + (err && err.message ? err.message : "erro desconhecido");
+        }
+      }
+
+      // ========= Eventos =========
+      el.btnMenu.addEventListener("click", ()=> toggleMenu());
       el.btnEditar.addEventListener("click", ()=>{ fillInputs(); openModal(el.modalConfig); });
       el.btnAbrirConfig.addEventListener("click", ()=>{ fillInputs(); openModal(el.modalConfig); });
       el.btnFecharConfig.addEventListener("click", ()=> closeModal(el.modalConfig));
       el.modalConfig.addEventListener("click", (e)=>{ if(e.target === el.modalConfig) closeModal(el.modalConfig); });
+
+      el.btnAbrirCarta.addEventListener("click", ()=> openModal(el.modalCarta));
+      el.btnFecharCarta.addEventListener("click", ()=> closeModal(el.modalCarta));
+      el.modalCarta.addEventListener("click", (e)=>{ if(e.target === el.modalCarta) closeModal(el.modalCarta); });
 
       el.btnSalvar.addEventListener("click", ()=>{
         state = readInputs();
@@ -1156,16 +1291,22 @@ Assinado: ${state.seuNome || defaults.seuNome}.`;
       el.btnRolar.addEventListener("click", ()=> scrollToId("#motivos"));
       el.btnIrPedido.addEventListener("click", ()=> scrollToId("#pedido"));
 
-      el.btnNao.addEventListener("mouseenter", dodgeNo);
-      el.btnNao.addEventListener("click", dodgeNo);
+      // Importante pro mobile:
+      el.btnNao.addEventListener("pointerenter", dodgeNo);
+      el.btnNao.addEventListener("pointerdown", (e)=>{ e.preventDefault(); dodgeNo(); });
+      el.btnNao.addEventListener("click", (e)=>{ e.preventDefault(); dodgeNo(); });
 
       el.btnSim.addEventListener("click", onYes);
       el.btnCompartilhar.addEventListener("click", share);
 
-      // preencher inputs e aplicar
+      // Fecha o menu ao scroll (mobile)
+      window.addEventListener("scroll", ()=> toggleMenu(false), { passive:true });
+
+      // Init
       apply();
       fillInputs();
       setInterval(updateCountdown, 1000);
+      loadGallery();
     })();
   </script>
 </body>
